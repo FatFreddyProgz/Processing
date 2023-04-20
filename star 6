@@ -1,0 +1,29 @@
+void setup() {
+  size(1024, 768);
+  background(0); // Fond noir
+  noFill(); // Pas de remplissage
+  stroke(255); // Couleur blanche
+  strokeWeight(5); // Épaisseur du trait
+  
+  // Calcul des coordonnées des sommets de l'étoile
+  float cx = width/2; // Centre de l'écran en X
+  float cy = height/2; // Centre de l'écran en Y
+  float r = min(width, height)/2 * 0.8; // Rayon de l'étoile
+  float[] x = new float[12];
+  float[] y = new float[12];
+  for (int i = 0; i < 12; i++) {
+    float angle = TWO_PI/12 * i;
+    float d = (i % 2 == 0) ? r : r * 0.4;
+    x[i] = cx + cos(angle) * d;
+    y[i] = cy + sin(angle) * d;
+  }
+  
+  // Dessin de l'étoile
+  beginShape();
+  for (int i = 0; i < 12; i++) {
+    vertex(x[i], y[i]);
+  }
+  endShape(CLOSE);
+  save("image.png");
+  noLoop();
+}
